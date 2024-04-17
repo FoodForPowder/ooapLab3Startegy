@@ -30,6 +30,9 @@ namespace ooapLab3Startegy
         {
             double x1, x2, y1, y2;
 
+
+           
+
             x1 = double.Parse(X1.Text);
             x2 = double.Parse(X2.Text);
             y1 = double.Parse(Y1.Text);
@@ -38,29 +41,8 @@ namespace ooapLab3Startegy
             var Points = new Points(x1, x2,y1,y2);
 
             string strategyName = comboBox1.Text;
-
-            IPointStrategy strategy;
-
-            
-
-   
-            switch (strategyName)
-            {
-                case "MaxStrategy":
-                    strategy = new MaxStrategy();
-                    break;
-                case "SqrtStrategy":
-                    strategy = new SqrtStrategy();
-                    break;
-                case "SumStrategy":
-                    strategy = new SumStrategy();
-                    break;
-                default:
-                    throw new Exception(Text = "Неизвестная стратегия.");
-                   
-            }
-            Points.SetStragy(strategy);
-            pointRes.Text= Points.Calcuate().ToString();
+                             
+            pointRes.Text= Points.Calcuate(strategyName).ToString();
         }
 
         private void ArrBut_Click(object sender, EventArgs e)
@@ -73,29 +55,8 @@ namespace ooapLab3Startegy
             ArrayAsText.Text = string.Join(",", arryas.arr);
 
             string strategyName = comboBox2.Text;
-
-            IArrStrategy strategy;
-
-
-         
-
-            switch (strategyName)
-            {
-                case "Найти медианный элемент.":
-                    strategy = new MedianStrategy();
-                    break;
-                case "Найти самый частый элемент.":
-                    strategy = new CommonStrategy();
-                    break;
-                case "Найти среднее значение.":
-                    strategy = new AverageStrategy();
-                    break;
-                default:
-                    throw new Exception(Text = "Неизвестная стратегия.");
-
-            }
-            arryas.SetStragy(strategy);
-            arrRes.Text = arryas.Calcuate().ToString();
+                     
+            arrRes.Text = arryas.Calcuate(strategyName).ToString();
         }
     }
 }

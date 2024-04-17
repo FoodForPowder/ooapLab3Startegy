@@ -1,9 +1,11 @@
 ﻿using ooapLab3Startegy.Strategies;
+using ooapLab3Startegy.Strategies.ArrStrategy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ooapLab3Startegy.Contexts
 {
@@ -28,13 +30,28 @@ namespace ooapLab3Startegy.Contexts
             this.strategy = strategy;
         }
 
-        public double Calcuate()
+        public double Calcuate(string strategyName)
         {
             if (arr == null)
             {
                 throw new Exception(message: "Массив пуст");
             }
-            return strategy.Calculate(arr);
+            switch (strategyName)
+            {
+                case "Найти медианный элемент.":
+                    return arr.ElementAt(arr.Count() / 2 - 1); ;
+                    break;
+                case "Найти самый частый элемент.":
+                    return arr.GroupBy(x => x).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefault();
+                    break;
+                case "Найти среднее значение.":
+                    return arr.Average();
+                    break;
+                default:
+                    throw new Exception(message: "Неизвестная стратегия.");
+
+            }
+            
         }
     }
 }

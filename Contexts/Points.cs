@@ -1,9 +1,11 @@
 ﻿using ooapLab3Startegy.Strategies;
+using ooapLab3Startegy.Strategies.PointsStrategy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ooapLab3Startegy.Contexts
 {
@@ -26,9 +28,23 @@ namespace ooapLab3Startegy.Contexts
             this.strategy = strategy;
         }
 
-        public double Calcuate()
+        public double Calcuate(string strategyName)
         {
-            return strategy.Calculate(x1,y1, x2, y2);
+            switch (strategyName)
+            {
+                case "MaxStrategy":
+                    return  Math.Max(Math.Abs(x1 - x2), Math.Abs(y1 - y2));
+                    
+                case "SqrtStrategy":
+                    return Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+                    break;
+                case "SumStrategy":
+                    return (Math.Abs(x1 - x2) + Math.Abs(y1 - y2));
+                    break;
+                default:
+                    throw new Exception(message: "Неизвестная стратегия.");
+
+            }
         }    
         
     }
