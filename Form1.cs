@@ -30,9 +30,6 @@ namespace ooapLab3Startegy
         {
             double x1, x2, y1, y2;
 
-
-           
-
             x1 = double.Parse(X1.Text);
             x2 = double.Parse(X2.Text);
             y1 = double.Parse(Y1.Text);
